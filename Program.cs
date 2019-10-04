@@ -1,45 +1,90 @@
 ﻿using System;
-//ConsoleApp4
-namespace Assignment_2
+
+namespace Experimental1
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            //Method-1 SearchInsert() 
-            Console.WriteLine("Enter key:");
+            //-----------------------------------Method-1-SearchInsert()------------------------------
+            //int target = 5;
+            //int[] nums = { 1, 3, 5, 6 };
+            Console.WriteLine("Method-1-SearchInsert:Start");
+            Console.WriteLine("Enter the Target:");
             string k = Console.ReadLine();
-            int key = int.Parse(k);
+            int target = int.Parse(k);
             int[] arr1 = input_array();
-            //Console.WriteLine("Enter press enter for the output :");
-            int x = Convert.ToInt32(SearchInsert(arr1, key));
-            Console.WriteLine("Output: " + x);
+            int x = Convert.ToInt32(SearchInsert(arr1, target));
+            Console.WriteLine("Output:Position to insert {0} is = {1}\n", target, SearchInsert(arr1, target));
             Console.Read();
+            Console.WriteLine("--------------------------------------------------");
+            //-----------------------------------Method-2-Intersect()------------------------------
+            Console.WriteLine("Method-2-Intersect():");
+            int[] nums1 = { 1, 2, 2, 1 };
+            int[] nums2 = { 2, 2 };
+            int[] intersect = Intersect(nums1, nums2);
+            Console.WriteLine("Intersection of two arrays is: ");
+            DisplayArray(intersect);
+            Console.WriteLine("\n");
+            Console.Read();
+            Console.WriteLine("--------------------------------------------------");
             //-----------------------------------Method-3-LargestUniqueNumber()------------------------------
             //int[] A = { 5, 7, 3, 9, 4, 9, 8, 3, 1 };
+            Console.WriteLine("Method-3-LargestUniqueNumber:");
             int[] arr2 = input_array();
-            //int len2 = input_array_length();
-            Console.WriteLine("Largest integer occuring once = {0}\n", LargestUniqueNumber(arr2));
+            Console.WriteLine("Output:Largest integer occuring once = {0}\n", LargestUniqueNumber(arr2));
             Console.Read();
-            //-----------------------------------Method--5LargestUniqueNumber()------------------------------
-
-            //int[,] image = { { 1, 1, 0 }, { 1, 0, 1 }, { 0, 0, 0 } };
-            Console.WriteLine("Please enter the binary array for method LargestUniqueMethod");
-            int[] flip_arr_input = input_array();
-            //Console.WriteLine("\n");
-            int[] horizontal_arr = Flip_array(flip_arr_input);
-            Console.WriteLine("The resulting flipped and inverted image is :", horizontal_arr);
-            for (int i = 0; i < horizontal_arr.Length; i++)
+            Console.WriteLine("--------------------------------------------------");
+            //----------------------Method-4-CalculateTime()--------------------------------------------------
+            string keyboard = "abcdefghijklmnopqrstuvwxyz";
+            string word = "cba";
+            Console.WriteLine("Time taken to type with one finger = {0}\n", CalculateTime(keyboard, word));
+            Console.WriteLine("--------------------------------------------------");
+            //----------------------Method-5-FlipAndInvertImage()---------------------------------------------
+            int[,] image = { { 1, 1, 0 }, { 1, 0, 1 }, { 0, 0, 0 } };
+            int[,] flipAndInvertedImage = FlipAndInvertImage(image);
+            Console.WriteLine("The resulting flipped and inverted image is:\n");
+            Display2DArray(flipAndInvertedImage);
+            Console.WriteLine("Press any key to continue further code:\n");
+            Console.Write("\n");
+            Console.Read();
+            Console.WriteLine("--------------------------------------------------");
+            //----------------------Method-6-MinMeetingRooms()---------------------------------------------
+            int[,] intervals = { { 0, 30 }, { 5, 10 }, { 15, 20 } };
+            int minMeetingRooms = MinMeetingRooms(intervals);
+            Console.WriteLine("Minimum meeting rooms needed = {0}\n", minMeetingRooms);
+            Console.Read();
+            Console.WriteLine("--------------------------------------------------");
+            //----------------------------Method-7-SortedSquares------------------------------------------
+            //int[] arr = { -4, -1, 0, 3, 10 };
+            Console.WriteLine("Method-7-SortedSquares:Enjoy");
+            Console.Write("\n");
+            int[] arr = input_array();
+            for (int i = 0; i < arr.Length && (arr[i] > arr[i + 1]); i++)
             {
-                Console.Write(Convert.ToInt32(horizontal_arr[i]));
+                Console.WriteLine("Your input array is not in ascending order. Next time please enter in ascending order.");
+                Console.ReadLine();
             }
-            Console.Read();
-            Console.WriteLine("\n");
-            //Display2DArray(flipAndInvertedImage);
-            Console.Read();
+            int[] sortedSquares = SortedSquares(arr);
+            Console.WriteLine("Squares of the array in the sorted order is:");
+            DisplayArray(sortedSquares);
+            Console.Write("\n");
+            Console.Write("\n");
+            //----------------------------Method-8-ValidPalindrome------------------------------------------
+            string s = "acivic";
+            Console.WriteLine("The input string to check palindrome or not is:" + s);
+            bool val = ValidPalindrome(s);
+            if (val == false)
+            {
+                Console.WriteLine("The input string \"{0}\" CANNOT be made PALINDROME", s);
+            }
+            else if (val == true)
+            {
+                Console.WriteLine("The input string \"{0}\" can be made PALINDROME ", s);
+            }
 
-            //----------------------------------------END-------------------------------------------------------
         }
+        //----------------------Main Function Ends----------------------------------------------------
         public static int input_array_length()
         {
             Console.WriteLine("Please enter the length of array");
@@ -67,6 +112,47 @@ namespace Assignment_2
             Console.Read();
             return (array);
         }
+        //--------------------------------------------------------------------------
+        public static int[,] Input2DArray()
+        {
+            Console.WriteLine("Enter No.of rows for 2D Array: ");
+            string row = Console.ReadLine();
+            int no_of_rows = int.Parse(row);
+            Console.WriteLine("Enter No.of columns for 2D Array: ");
+            string column = Console.ReadLine();
+            int no_of_columns = int.Parse(column);
+            int[,] array_input = new int[no_of_rows, no_of_columns];
+
+            Console.WriteLine("\nRead 2D Array abd display the input matrix:");
+            Console.WriteLine("------------------------------------");
+            //Read the input array and store the elements in the array
+            for (int i = 0; i < no_of_rows; i++)
+            {
+                for (int j = 0; j < no_of_columns; j++)
+                {
+                    Console.WriteLine("Write Array element - [{0},{1}]", i, j);
+                    array_input[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+            Console.WriteLine("\nThe input Array is:");
+            for (int i = 0; i < no_of_rows; i++)
+            {
+                Console.Write("\n");
+                for (int j = 0; j < no_of_columns; j++)
+                {
+                    Console.Write("{0}\t", array_input[i, j]);
+                }
+            }
+            Console.WriteLine("\n");
+            return array_input;
+        }
+        public static void DisplayArray(int[] a)
+        {
+            foreach (int n in a)
+            {
+                Console.Write(n + " ");
+            }
+        }
         public static void Display2DArray(int[,] a)
         {
             for (int i = 0; i < a.GetLength(0); i++)
@@ -78,60 +164,47 @@ namespace Assignment_2
                 Console.Write("\n");
             }
         }
-        //------------------------------Method-1-----------------------------------------------------------------------
-        public static int SearchInsert(int[] arr1, int key)
+        public static int SearchInsert(int[] nums, int target)
         {
-            int[] inputArray = arr1;
-
-            int min = 0;
-            int max = inputArray.Length - 1;
-            while (min <= max)
+            try
             {
-                int mid = (min + max) / 2;
-                //Console.WriteLine(mid);
-                if (key == inputArray[mid])
-                {
-                    return mid;
-                }
-                else if (key < inputArray[mid])
-                {
-                    max = mid - 1;
-                }
-                else if (key > inputArray[mid])
-                {
-                    min = mid + 1;
-                }
-
+                // Write your code here
+            }
+            catch
+            {
+                Console.WriteLine("Exception occured while computing SearchInsert()");
             }
 
-            int i = inputArray.Length - 1;
-            while (i != -1)
-            {
-                if (key < inputArray[i])
-                {
-                    i--;
-                }
-                else
-                    return (i + 1);
-            }
-            return (0);
+            return 0;
         }
-        //------------------------------Method-3-----------------------------------------------------------------------
+
+        public static int[] Intersect(int[] nums1, int[] nums2)
+        {
+            try
+            {
+                // Write your code here
+            }
+            catch
+            {
+                Console.WriteLine("Exception occured while computing Intersect()");
+            }
+
+            return new int[] { };
+        }
+        //-----------------------------------Method-3-LargestUniqueNumber()------------------------------
         public static int LargestUniqueNumber(int[] A)
         {
-            //int array_length = A.Length;
             try
             {
                 int temp = 0;
-
-                for (int m = 0; m < A.Length;m++)
+                for (int m = 0; m < A.Length; m++)
                 {
                     int count = 0;
-                    for (int n = 0; n < A.Length;n++)
+                    for (int n = 0; n < A.Length; n++)
                     {
                         if (A[m] == A[n])
                         {
-                            count++; 
+                            count++;
                         }
                     }
                     if (count == 1 && temp < A[m])
@@ -153,60 +226,187 @@ namespace Assignment_2
             {
                 Console.WriteLine("Exception occured while computing LargestUniqueNumber()");
             }
+
             return 0;
         }
-        //------------------------------Method-5------------------------------------------------------------------------
-        public static int[] FlipAndInvertImage(int[] B)
+        public static int CalculateTime(string keyboard, string word)
         {
+            int r = 0;
+            if ((keyboard[0] - word[0]) > 0)
+                r = 26 - (keyboard[0] - word[0]);
+            else
+                r = Math.Abs(keyboard[0] - word[0]);
+            //Console.WriteLine(r);
             try
             {
-                int[] C = new int[B.Length];
-                for (int i =0;i<B.Length-1;i++)
+                int a = 0;
+                int b = 0;
+                for (int j = 1; j < word.Length; j++)
                 {
-                    if (B[i] == 0)
+
+                    if ((keyboard[0] - word[j]) > 0 && (keyboard[0] - word[j - 1]) > 0)
                     {
-                        C[i] = 1;
+                        a = 26 - (keyboard[0] - word[j]);
+                        //Console.Write(a);
+                        b = 26 - (keyboard[0] - word[j - 1]);
+                        // Console.WriteLine(b);
                     }
-                    else
-                        C[i] = 0;
+                    else if ((keyboard[0] - word[j]) < 0 && (keyboard[0] - word[j - 1]) < 0)
+                    {
+                        a = Math.Abs(keyboard[0] - word[j]);
+                        // Console.Write(a);
+                        b = Math.Abs(keyboard[0] - word[j - 1]);
+                        //Console.WriteLine(b);
+                    }
+                    else if ((keyboard[0] - word[j]) > 0 && (keyboard[0] - word[j - 1]) < 0)
+                    {
+                        a = 26 - (keyboard[0] - word[j]);
+                        b = Math.Abs(keyboard[0] - word[j - 1]);
+                    }
+                    else if ((keyboard[0] - word[j]) < 0 && (keyboard[0] - word[j - 1]) > 0)
+                    {
+                        a = Math.Abs(keyboard[0] - word[j]);
+                        b = 26 - (keyboard[0] - word[j - 1]);
+                    }
+                    r = r + Math.Abs(a - b);
                 }
-                Console.WriteLine("This is your Inverted array: ");
-                for (int i = 0; i < B.Length; i++)
+            }
+            catch
+            {
+                Console.WriteLine("Exception occured while computing CalculateTime()");
+            }
+            return r;
+        }
+
+        public static int[,] FlipAndInvertImage(int[,] A)
+        {
+            int row = A.GetLength(0);
+            int col = A.GetLength(1);
+            int b, c, d;
+            int[,] B = new int[row, col];
+            try
+            {
+                for (int i = 0; i < row; i++)
                 {
-                    Console.Write(Convert.ToInt32(C[i]));
+                    for (int j = 0; j < col; j++)
+                    {
+                        b = A[i, j];
+                        c = A[i, col - j - 1];
+                        d = b;
+                        b = 0;
+                        b = c;
+                        c = d;
+                        B[i, j] = b;
+                        if (B[i, j] == 0)
+                            B[i, j] = 1;
+                        else if (B[i, j] == 1)
+                            B[i, j] = 0;
+                    }
                 }
-                Console.Read();
-                return (C);
+                return B;
             }
             catch
             {
                 Console.WriteLine("Exception occured while computing FlipAndInvertImage()");
             }
+            return new int[,] { };
+        }
+
+        public static int MinMeetingRooms(int[,] intervals)
+        {
+            try
+            {
+                // Write your code here
+            }
+            catch
+            {
+                Console.WriteLine("Exception occured while computing MinMeetingRooms()");
+            }
+
+            return 0;
+        }
+
+        public static int[] SortedSquares(int[] A)
+        {
+            try
+            {
+                int[] SquareArr = new int[A.Length];
+                for (int i = 0; i < A.Length; i++)
+                {
+                    int SqrNum = A[i] * A[i];
+                    SquareArr[i] = (SqrNum);
+                }
+                Array.Sort(SquareArr);
+                //Console.WriteLine("Your Squared array is:" + SquareArr);
+                return SquareArr;
+            }
+            catch
+            {
+                Console.WriteLine("Exception occured while computing SortedSquares()");
+            }
             return new int[] { };
         }
-        public static int[] Flip_array(int[] B)
+
+        //This function checks whether the given input is palindrome or not.
+        public static bool PalindromeValidityCheck(string s)
         {
-            //int[] C = new int[B.Length];
-            //Array.Reverse(B);
+            try
+            {
+                int a = 0;
+                int b = s.Length - 1;
+                //This loop checks the string input from both ends like starting end and ending end
+                while (true)
+                {
+                    if (a > b)
+                    {
+                        return true;
+                    }
+                    char m = s[a];
+                    char n = s[b];
+                    //This condition checks whether two strings created in above are equal or not
+                    if (char.ToLower(m) != char.ToLower(n))
+                    {
+                        return false;
+                    }
+                    a++;
+                    b--;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Exception occured while computing ValidPalindrome()");
+            }
 
-            int[] array = new int[B.Length];
-            int j = 0;
-            int i = 0;
-            for(i = B.Length-1,j = 0; i>=0 && j < B.Length; i--,j++)
-            {
-                array[j] = B[i];
-            }
-            Console.WriteLine("This is your Flipped array: ");
-            for (int m = 0; m < B.Length; m++)
-            {
-                Console.Write(Convert.ToInt32(array[m]));
-            }
-            Console.Read();
-            Console.WriteLine("\n");
-            return (array);
+            return false;
         }
-        //------------------------------Method---------------------------------
-
-
+        public static bool ValidPalindrome(string s)
+        {
+            int b = s.Length - 1;
+            int len = 0;
+            //this will check the original string (before removing any character) palindrome or not 
+            bool result = PalindromeValidityCheck(s);
+            if (result == true)
+            {
+                return result;
+            }
+            else
+            {
+                //this loop will check the string palindrome or not
+                while (len <= b)
+                {
+                    // create a string with the i-th character removed
+                    var x = s.Remove(len++, 1);
+                    // and test if it is a palindrome after removing i-th character.
+                    bool result2 = PalindromeValidityCheck(x);
+                    //if the result after deleting one character is true that means if it is possible 
+                    //to make the string palindrome, then return result true.
+                    if (result2 == true)
+                    {
+                        return result2;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }
