@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Experimental1
 {
@@ -19,45 +20,49 @@ namespace Experimental1
             Console.Read();
             Console.WriteLine("--------------------------------------------------");
             //-----------------------------------Method-2-Intersect()------------------------------
-            Console.WriteLine("Method-2-Intersect():");
+            Console.WriteLine("Method-2-Intersect:");
             int[] nums1 = { 1, 2, 2, 1 };
             int[] nums2 = { 2, 2 };
             int[] intersect = Intersect(nums1, nums2);
             Console.WriteLine("Intersection of two arrays is: ");
             DisplayArray(intersect);
             Console.WriteLine("\n");
-            Console.Read();
             Console.WriteLine("--------------------------------------------------");
             //-----------------------------------Method-3-LargestUniqueNumber()------------------------------
-            //int[] A = { 5, 7, 3, 9, 4, 9, 8, 3, 1 };
             Console.WriteLine("Method-3-LargestUniqueNumber:");
-            int[] arr2 = input_array();
-            Console.WriteLine("Output:Largest integer occuring once = {0}\n", LargestUniqueNumber(arr2));
-            Console.Read();
+            int[] A = { 1,4,5,5,5,6,6,7,9,9,9 };
+            //int[] arr2 = input_array();
+            Console.WriteLine("Output:Largest integer occuring once = {0}\n", LargestUniqueNumber(A));
+            Console.WriteLine("Press any key to continue further code:\n");
             Console.WriteLine("--------------------------------------------------");
+            Console.Read();
             //----------------------Method-4-CalculateTime()--------------------------------------------------
+            Console.WriteLine("Method-4-CalculateTime:");
             string keyboard = "abcdefghijklmnopqrstuvwxyz";
             string word = "cba";
-            Console.WriteLine("Time taken to type with one finger = {0}\n", CalculateTime(keyboard, word));
+            Console.WriteLine("Time taken to type with one finger is = {0} units.\n", CalculateTime(keyboard, word));
+            Console.Read();
             Console.WriteLine("--------------------------------------------------");
             //----------------------Method-5-FlipAndInvertImage()---------------------------------------------
+            Console.WriteLine("Method-5-FlipAndInvertImage:");
             int[,] image = { { 1, 1, 0 }, { 1, 0, 1 }, { 0, 0, 0 } };
             int[,] flipAndInvertedImage = FlipAndInvertImage(image);
             Console.WriteLine("The resulting flipped and inverted image is:\n");
             Display2DArray(flipAndInvertedImage);
             Console.WriteLine("Press any key to continue further code:\n");
-            Console.Write("\n");
+            //Console.Write("\n");
             Console.Read();
             Console.WriteLine("--------------------------------------------------");
             //----------------------Method-6-MinMeetingRooms()---------------------------------------------
+            Console.WriteLine("Method-6-MinMeetingRooms:");
             int[,] intervals = { { 0, 30 }, { 5, 10 }, { 15, 20 } };
             int minMeetingRooms = MinMeetingRooms(intervals);
             Console.WriteLine("Minimum meeting rooms needed = {0}\n", minMeetingRooms);
             Console.Read();
             Console.WriteLine("--------------------------------------------------");
-            //----------------------------Method-7-SortedSquares------------------------------------------
+            //----------------------------Method-7-SortedSquares()------------------------------------------
             //int[] arr = { -4, -1, 0, 3, 10 };
-            Console.WriteLine("Method-7-SortedSquares:Enjoy");
+            Console.WriteLine("Method-7-SortedSquares");
             Console.Write("\n");
             int[] arr = input_array();
             for (int i = 0; i < arr.Length && (arr[i] > arr[i + 1]); i++)
@@ -70,9 +75,10 @@ namespace Experimental1
             DisplayArray(sortedSquares);
             Console.Write("\n");
             Console.Write("\n");
-            //----------------------------Method-8-ValidPalindrome------------------------------------------
+            //----------------------------Method-8-ValidPalindrome()------------------------------------------
+            Console.WriteLine("Method-8-ValidPalindrome:");
             string s = "acivic";
-            Console.WriteLine("The input string to check palindrome or not is:" + s);
+            //Console.WriteLine("The input string to check palindrome or not is:" + s);
             bool val = ValidPalindrome(s);
             if (val == false)
             {
@@ -82,7 +88,6 @@ namespace Experimental1
             {
                 Console.WriteLine("The input string \"{0}\" can be made PALINDROME ", s);
             }
-
         }
         //----------------------Main Function Ends----------------------------------------------------
         public static int input_array_length()
@@ -164,72 +169,103 @@ namespace Experimental1
                 Console.Write("\n");
             }
         }
-        public static int SearchInsert(int[] nums, int target)
+        public static int SearchInsert(int[] arr1, int key)
         {
-            try
+            int[] inputArray = arr1;
+            int min = 0;
+            int max = inputArray.Length - 1;
+            while (min <= max)
             {
-                // Write your code here
-            }
-            catch
-            {
-                Console.WriteLine("Exception occured while computing SearchInsert()");
+                int mid = (min + max) / 2;
+                if (key == inputArray[mid])
+                {
+                    return mid;
+                }
+                else if (key < inputArray[mid])
+                {
+                    max = mid - 1;
+                }
+                else if (key > inputArray[mid])
+                {
+                    min = mid + 1;
+                }
             }
 
-            return 0;
+            int i = inputArray.Length - 1;
+            while (i != -1)
+            {
+                if (key < inputArray[i])
+                {
+                    i--;
+                }
+                else
+                    return (i + 1);
+            }
+            return (0);
         }
 
         public static int[] Intersect(int[] nums1, int[] nums2)
         {
+            List<int> intersec = new List<int>();
             try
             {
-                // Write your code here
+                Dictionary<int, int> mydictionary1 = new Dictionary<int, int>();
+                foreach (int num in nums1)
+                {
+                    if (!mydictionary1.ContainsKey(num))
+                    {
+                        mydictionary1.Add(num, 1);
+                    }
+                    else
+                    {
+                        mydictionary1[num]++;
+                    }
+                }
+                foreach (int num in nums2)
+                {
+                    if (mydictionary1.ContainsKey(num) && mydictionary1[num] > 0)
+                    {
+                        intersec.Add(num);
+                        mydictionary1[num]--;
+                    }
+                }
+                return intersec.ToArray();
             }
             catch
             {
                 Console.WriteLine("Exception occured while computing Intersect()");
             }
-
             return new int[] { };
         }
         //-----------------------------------Method-3-LargestUniqueNumber()------------------------------
         public static int LargestUniqueNumber(int[] A)
         {
+            int t = -1;
             try
             {
-                int temp = 0;
-                for (int m = 0; m < A.Length; m++)
+                Array.Sort(A);
+                int i = A.Length - 1;
+                for (; i > 0; i--)
                 {
-                    int count = 0;
-                    for (int n = 0; n < A.Length; n++)
+                    if (A[i] == A[i - 1])
                     {
-                        if (A[m] == A[n])
-                        {
-                            count++;
-                        }
-                    }
-                    if (count == 1 && temp < A[m])
-                    {
-                        temp = A[m];
-                    }
-                    else if (count > 1 && m != A.Length - 1)
-                    {
-                        temp = A[m];
+                        i--;
                     }
                     else
                     {
-                        temp = -1;
+                        t = A[i];
+                        break;
                     }
                 }
-                return temp;
+                return t;
             }
             catch
             {
                 Console.WriteLine("Exception occured while computing LargestUniqueNumber()");
             }
-
             return 0;
         }
-        public static int CalculateTime(string keyboard, string word)
+            public static int CalculateTime(string keyboard, string word)
         {
             int r = 0;
             if ((keyboard[0] - word[0]) > 0)
