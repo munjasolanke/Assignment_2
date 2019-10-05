@@ -215,6 +215,8 @@ namespace Experimental1
         /* Given an array of distinct sorted integers sorted in ascending order and target value is is aloso provided.
          * Return the index of the target if it is found in the array. In case if not able to find the target, 
          * it will return the index where the target could be inserted so as the array still remains sorted.
+         *
+         *  Method completed by Munja Solanke 
          */
         public static int SearchInsert(int[] arr1, int key)
         {
@@ -455,6 +457,8 @@ namespace Experimental1
         //----------------------Method-6-MinMeetingRooms()---------------------------------------------
         /* Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei),
          * Below function finds the minimum number of conference rooms required.
+         *
+         *  Method completed by Nivedita Mangal
          */
         public static int minMeetingRooms(int[,] intervals)
     {
@@ -494,11 +498,13 @@ namespace Experimental1
         }
         return 0;
     }
-    //----------------------------Method-7-SortedSquares()------------------------------------------
-    /* Given an array of integers sorted in non-decreasing order and return an array of the squares of each number 
-     * in sorted non-decreasing order. 
-     */
-    public static int[] SortedSquares(int[] A)
+        //----------------------------Method-7-SortedSquares()------------------------------------------
+        /* Given an array of integers sorted in non-decreasing order and return an array of the squares of each number 
+         * in sorted non-decreasing order. 
+         * 
+         *  Method completed by Munja Solanke 
+         */
+        public static int[] SortedSquares(int[] A)
         {
             try
             {
@@ -525,7 +531,10 @@ namespace Experimental1
         /* A string is said to be a palindrome if the string read from left to right is equal to the string read from right to left.
          * You are given a non empty string. You need to check whether the given string can be made palindrome or not considering that 
          * you can delete maximum one character 
+         *
+         *  Method completed by Munja Solanke
          */
+
         //This function checks whether the given input is palindrome or not.
         public static bool PalindromeValidityCheck(string s)
         {
