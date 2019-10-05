@@ -125,7 +125,8 @@ namespace Experimental1
             }
             Console.WriteLine("--------------------------------------------------");
         }
-//----------------------Main Function Ends----------------------------------------------------
+        //----------------------Main Function Ends----------------------------------------------------
+        //input_array_length() function used to calculate the length of the array 
         public static int input_array_length()
         {
             Console.WriteLine("Please enter the length of array");
@@ -133,6 +134,9 @@ namespace Experimental1
             int arrayLength = int.Parse(arrlen);
             return arrayLength;
         }
+        /*input_array() function is used to read the single dimensional array from console and 
+         *display that single dimensional array
+         */
         public static int[] input_array()
         {
             //This loop is to read the array from console
@@ -153,7 +157,7 @@ namespace Experimental1
             Console.Read();
             return (array);
         }
-        //--------------------------------------------------------------------------
+        /* Input2DArray() function is used to read the input from console and display that 2-dimentional array */
         public static int[,] Input2DArray()
         {
             Console.WriteLine("Enter No.of rows for 2D Array: ");
@@ -187,6 +191,7 @@ namespace Experimental1
             Console.WriteLine("\n");
             return array_input;
         }
+        /* DisplayArray() function is used display the 1-dimentional array on the console*/
         public static void DisplayArray(int[] a)
         {
             foreach (int n in a)
@@ -194,6 +199,7 @@ namespace Experimental1
                 Console.Write(n + " ");
             }
         }
+        /* Display2DArray() function is used display the 2-dimentional array on the console*/
         public static void Display2DArray(int[,] a)
         {
             for (int i = 0; i < a.GetLength(0); i++)
