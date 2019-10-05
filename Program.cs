@@ -12,8 +12,8 @@ namespace Experimental1
             //int[] nums = { 1, 3, 5, 6 };
             Console.WriteLine("Method-1-SearchInsert:Start");
             Console.WriteLine("Enter the Target:");
-            string k = Console.ReadLine();
-            int target = int.Parse(k);
+            string ka = Console.ReadLine();
+            int target = int.Parse(ka);
             int[] arr1 = input_array();
             int x = Convert.ToInt32(SearchInsert(arr1, target));
             Console.WriteLine("Output:Position to insert target {0} is = {1}\n", target, SearchInsert(arr1, target));
@@ -56,10 +56,45 @@ namespace Experimental1
             Console.WriteLine("--------------------------------------------------");
             //----------------------Method-6-MinMeetingRooms()---------------------------------------------
             Console.WriteLine("Method-6-MinMeetingRooms:");
-            int[,] intervals = { { 0, 30 }, { 5, 10 }, { 15, 20 } };
-            int minMeetingRooms = MinMeetingRooms(intervals);
-            Console.WriteLine("Minimum meeting rooms needed = {0}\n", minMeetingRooms);
-            Console.Read();
+            //int[,] intervals = { { 0, 30 }, { 5, 10 }, { 15, 20 } };
+            //int minMeetingRooms = MinMeetingRooms(intervals);
+            //Console.WriteLine("Minimum meeting rooms needed = {0}\n", minMeetingRooms);
+            //Console.Read();
+
+            int a = 0;
+            List<string> timeInput = new List<string>();
+            Console.WriteLine("Please enter the number of meetings:");
+            string n = Console.ReadLine();
+            string input;
+            for (int i = int.Parse(n) * 2; i > 0; i--)
+            {
+                if (a % 2 == 0)
+                {
+
+                    Console.WriteLine("Please enter start time: ");
+                }
+                else
+                {
+                    Console.WriteLine("Please enter end time: ");
+                }
+
+                input = Console.ReadLine();
+                timeInput.Add(input);
+                a++;
+            }
+            int k = 0;
+            int[,] intervals = new int[timeInput.Count / 2, 2];
+            for (int i = 0; i < (timeInput.Count / 2); i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    intervals[i, j] = int.Parse(timeInput[k]);
+                    k++;
+                }
+            }
+            int meetingRoom = minMeetingRooms(intervals);
+            //Console.WriteLine("Number of meeting rooms = " + meetingRoom);
+            Console.WriteLine("Minimum meeting rooms needed = {0}\n", meetingRoom);
             Console.WriteLine("--------------------------------------------------");
             //----------------------------Method-7-SortedSquares()------------------------------------------
             int[] arr = { -4, -1, 0, 3, 10 };
@@ -388,6 +423,52 @@ namespace Experimental1
 
             return 0;
         }
+
+        public static int minMeetingRooms(int[,] intervals)
+        {
+            int n = 0;
+            try
+            {
+                for (int i = 0; i < intervals.GetLength(0) - 1; i++)
+                {
+                    for (int j = i; j < intervals.GetLength(0); j++)
+                    {
+                        if (intervals[i, 0] > intervals[j, 0])
+                        {
+                            for (int k = 0; k < intervals.GetLength(1); k++)
+                            {
+                                var temp = intervals[i, k];
+                                intervals[i, k] = intervals[j, k];
+                                intervals[j, k] = temp;
+                            }
+                        }
+                    }
+                }
+                int f = 1;
+                for (int i = 0; i < intervals.GetLength(0);)
+                {
+                    if (intervals[i, 0] < intervals[f, 1])
+                    {
+                        i++;
+                    }
+                    else
+                        if (intervals[i, 0] > intervals[f, 1])
+                        f++;
+                    else
+                    {
+                        i++;
+                        f++;
+                    }
+                    n = Math.Max(n, i - f);
+                }
+                return n + 1;
+            }
+            catch
+            {
+                Console.WriteLine("Error in generating number of meeting rooms");
+            }
+            return 0;
+        }
         //----------------------------Method-7-SortedSquares()------------------------------------------
         /* Given an array of integers sorted in non-decreasing order and return an array of the squares of each number 
          * in sorted non-decreasing order. 
@@ -449,7 +530,6 @@ namespace Experimental1
             {
                 Console.WriteLine("Exception occured while computing ValidPalindrome()");
             }
-
             return false;
         }
         public static bool ValidPalindrome(string s)
