@@ -16,13 +16,13 @@ namespace Experimental1
             int target = int.Parse(k);
             int[] arr1 = input_array();
             int x = Convert.ToInt32(SearchInsert(arr1, target));
-            Console.WriteLine("Output:Position to insert {0} is = {1}\n", target, SearchInsert(arr1, target));
+            Console.WriteLine("Output:Position to insert target {0} is = {1}\n", target, SearchInsert(arr1, target));
             Console.Read();
             Console.WriteLine("--------------------------------------------------");
             //-----------------------------------Method-2-Intersect()------------------------------
             Console.WriteLine("Method-2-Intersect:");
-            int[] nums1 = { 1, 2, 2, 1 };
-            int[] nums2 = { 2, 2 };
+            int[] nums1 = { 3,6,2 };
+            int[] nums2 = { 6,3,6,7,3 };
             int[] intersect = Intersect(nums1, nums2);
             Console.WriteLine("Intersection of two arrays is: ");
             DisplayArray(intersect);
@@ -30,18 +30,19 @@ namespace Experimental1
             Console.WriteLine("--------------------------------------------------");
             //-----------------------------------Method-3-LargestUniqueNumber()------------------------------
             Console.WriteLine("Method-3-LargestUniqueNumber:");
-            int[] A = { 1,4,5,5,5,6,6,7,9,9,9 };
+            int[] A = { -2,4,4,4,4,4,5,5,5,6,6,7,7,9,9,9 };
             //int[] arr2 = input_array();
             Console.WriteLine("Output:Largest integer occuring once = {0}\n", LargestUniqueNumber(A));
-            Console.WriteLine("Press any key to continue further code:\n");
             Console.WriteLine("--------------------------------------------------");
-            Console.Read();
+            //Console.WriteLine("Press any key to continue further code:\n");
+            //Console.Read();
             //----------------------Method-4-CalculateTime()--------------------------------------------------
             Console.WriteLine("Method-4-CalculateTime:");
             string keyboard = "abcdefghijklmnopqrstuvwxyz";
-            string word = "cba";
+            string word = "mds";
             Console.WriteLine("Time taken to type with one finger is = {0} units.\n", CalculateTime(keyboard, word));
             Console.Read();
+            //Console.WriteLine("Press any key to continue further code:\n");
             Console.WriteLine("--------------------------------------------------");
             //----------------------Method-5-FlipAndInvertImage()---------------------------------------------
             Console.WriteLine("Method-5-FlipAndInvertImage:");
@@ -49,7 +50,7 @@ namespace Experimental1
             int[,] flipAndInvertedImage = FlipAndInvertImage(image);
             Console.WriteLine("The resulting flipped and inverted image is:\n");
             Display2DArray(flipAndInvertedImage);
-            Console.WriteLine("Press any key to continue further code:\n");
+            //Console.WriteLine("Press any key to continue further code:\n");
             //Console.Write("\n");
             Console.Read();
             Console.WriteLine("--------------------------------------------------");
@@ -61,10 +62,10 @@ namespace Experimental1
             Console.Read();
             Console.WriteLine("--------------------------------------------------");
             //----------------------------Method-7-SortedSquares()------------------------------------------
-            //int[] arr = { -4, -1, 0, 3, 10 };
+            int[] arr = { -4, -1, 0, 3, 10 };
             Console.WriteLine("Method-7-SortedSquares");
-            Console.Write("\n");
-            int[] arr = input_array();
+            //Console.Write("\n");
+            //int[] arr = input_array();
             for (int i = 0; i < arr.Length && (arr[i] > arr[i + 1]); i++)
             {
                 Console.WriteLine("Your input array is not in ascending order. Next time please enter in ascending order.");
@@ -75,19 +76,22 @@ namespace Experimental1
             DisplayArray(sortedSquares);
             Console.Write("\n");
             Console.Write("\n");
+            Console.WriteLine("--------------------------------------------------");
             //----------------------------Method-8-ValidPalindrome()------------------------------------------
             Console.WriteLine("Method-8-ValidPalindrome:");
-            string s = "acivic";
-            //Console.WriteLine("The input string to check palindrome or not is:" + s);
-            bool val = ValidPalindrome(s);
+            string str = "xerox";
+            Console.WriteLine("THE input string to check for palindrome is \"{0}\" ", str);
+            bool val = ValidPalindrome(str);
+            Console.Write("\n");
             if (val == false)
             {
-                Console.WriteLine("The input string \"{0}\" CANNOT be made PALINDROME", s);
+                Console.WriteLine("The input string \"{0}\" CANNOT be made PALINDROME", str);
             }
             else if (val == true)
             {
-                Console.WriteLine("The input string \"{0}\" can be made PALINDROME ", s);
+                Console.WriteLine("The input string \"{0}\" can be made PALINDROME ", str);
             }
+            Console.WriteLine("--------------------------------------------------");
         }
         //----------------------Main Function Ends----------------------------------------------------
         public static int input_array_length()
@@ -169,6 +173,11 @@ namespace Experimental1
                 Console.Write("\n");
             }
         }
+        //-----------------------------------Method-1-SearchInsert()------------------------------
+        /* Given an array of distinct sorted integers sorted in ascending order and target value is is aloso provided.
+         * Return the index of the target if it is found in the array. In case if not able to find the target, 
+         * it will return the index where the target could be inserted so as the array still remains sorted.
+         */
         public static int SearchInsert(int[] arr1, int key)
         {
             int[] inputArray = arr1;
@@ -176,15 +185,17 @@ namespace Experimental1
             int max = inputArray.Length - 1;
             while (min <= max)
             {
+                //this mid is used to calculate the mid value of the range from min to max
                 int mid = (min + max) / 2;
+                //this condition checks the target value is equal to mid value or not, if it is equal, return the mid value
                 if (key == inputArray[mid])
                 {
                     return mid;
-                }
+                }//if not above condition, then return the max = mid-1
                 else if (key < inputArray[mid])
                 {
                     max = mid - 1;
-                }
+                }//otherwise you need to return min value as mid+1
                 else if (key > inputArray[mid])
                 {
                     min = mid + 1;
@@ -203,7 +214,7 @@ namespace Experimental1
             }
             return (0);
         }
-
+        //-----------------------------------Method-2-Intersect()------------------------------
         public static int[] Intersect(int[] nums1, int[] nums2)
         {
             List<int> intersec = new List<int>();
@@ -240,15 +251,22 @@ namespace Experimental1
         //-----------------------------------Method-3-LargestUniqueNumber()------------------------------
         public static int LargestUniqueNumber(int[] A)
         {
-            int t = -1;
             try
             {
+                int t = 0;
+                int count = 1;
                 Array.Sort(A);
                 int i = A.Length - 1;
-                for (; i > 0; i--)
+                while (i >= 1 && i < A.Length)
                 {
                     if (A[i] == A[i - 1])
                     {
+                        count++;
+                        i--;
+                    }
+                    else if (count > 1)
+                    {
+                        count = 1;
                         i--;
                     }
                     else
@@ -257,15 +275,24 @@ namespace Experimental1
                         break;
                     }
                 }
+                if (i == 0 && count == 1)
+                {
+                    t = A[i];
+                }
+                if (i == 0 && count > 1)
+                {
+                    t = -1;
+                }
                 return t;
             }
             catch
             {
                 Console.WriteLine("Exception occured while computing LargestUniqueNumber()");
             }
-            return 0;
+            return new int { };
         }
-            public static int CalculateTime(string keyboard, string word)
+        //----------------------Method-4-CalculateTime()--------------------------------------------------
+        public static int CalculateTime(string keyboard, string word)
         {
             int r = 0;
             if ((keyboard[0] - word[0]) > 0)
@@ -279,7 +306,6 @@ namespace Experimental1
                 int b = 0;
                 for (int j = 1; j < word.Length; j++)
                 {
-
                     if ((keyboard[0] - word[j]) > 0 && (keyboard[0] - word[j - 1]) > 0)
                     {
                         a = 26 - (keyboard[0] - word[j]);
@@ -306,14 +332,15 @@ namespace Experimental1
                     }
                     r = r + Math.Abs(a - b);
                 }
+                return r;
             }
             catch
             {
                 Console.WriteLine("Exception occured while computing CalculateTime()");
             }
-            return r;
+            return 0;
         }
-
+        //----------------------Method-5-FlipAndInvertImage()---------------------------------------------
         public static int[,] FlipAndInvertImage(int[,] A)
         {
             int row = A.GetLength(0);
@@ -347,7 +374,7 @@ namespace Experimental1
             }
             return new int[,] { };
         }
-
+        //----------------------Method-6-MinMeetingRooms()---------------------------------------------
         public static int MinMeetingRooms(int[,] intervals)
         {
             try
@@ -361,17 +388,23 @@ namespace Experimental1
 
             return 0;
         }
-
+        //----------------------------Method-7-SortedSquares()------------------------------------------
+        /* Given an array of integers sorted in non-decreasing order and return an array of the squares of each number 
+         * in sorted non-decreasing order. 
+         */
         public static int[] SortedSquares(int[] A)
         {
             try
             {
+                //Initializing the array to store squares of the array elements 
                 int[] SquareArr = new int[A.Length];
+                //this for loop is used to calculate the square of the number
                 for (int i = 0; i < A.Length; i++)
                 {
                     int SqrNum = A[i] * A[i];
                     SquareArr[i] = (SqrNum);
                 }
+                //This will sort the squared array in ascending order
                 Array.Sort(SquareArr);
                 //Console.WriteLine("Your Squared array is:" + SquareArr);
                 return SquareArr;
@@ -382,7 +415,11 @@ namespace Experimental1
             }
             return new int[] { };
         }
-
+        //----------------------------Method-8-ValidPalindrome()------------------------------------------
+        /* A string is said to be a palindrome if the string read from left to right is equal to the string read from right to left.
+         * You are given a non empty string. You need to check whether the given string can be made palindrome or not considering that 
+         * you can delete maximum one character 
+         */
         //This function checks whether the given input is palindrome or not.
         public static bool PalindromeValidityCheck(string s)
         {
