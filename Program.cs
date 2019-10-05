@@ -93,7 +93,6 @@ namespace Experimental1
                 }
             }
             int meetingRoom = minMeetingRooms(intervals);
-            //Console.WriteLine("Number of meeting rooms = " + meetingRoom);
             Console.WriteLine("Minimum meeting rooms needed = {0}\n", meetingRoom);
             Console.WriteLine("--------------------------------------------------");
             //----------------------------Method-7-SortedSquares()------------------------------------------
@@ -410,70 +409,49 @@ namespace Experimental1
             return new int[,] { };
         }
         //----------------------Method-6-MinMeetingRooms()---------------------------------------------
-        public static int MinMeetingRooms(int[,] intervals)
-        {
-            try
-            {
-                // Write your code here
-            }
-            catch
-            {
-                Console.WriteLine("Exception occured while computing MinMeetingRooms()");
-            }
+    public static int minMeetingRooms(int[,] intervals)
+    {
 
-            return 0;
-        }
-
-        public static int minMeetingRooms(int[,] intervals)
+        int[] beg = new int[intervals.Length];
+        int[] end = new int[intervals.Length];
+        int nom = 0;
+        try
         {
-            int n = 0;
-            try
+            for (int i = 0; i < intervals.GetLength(0); i++)
             {
-                for (int i = 0; i < intervals.GetLength(0) - 1; i++)
-                {
-                    for (int j = i; j < intervals.GetLength(0); j++)
-                    {
-                        if (intervals[i, 0] > intervals[j, 0])
-                        {
-                            for (int k = 0; k < intervals.GetLength(1); k++)
-                            {
-                                var temp = intervals[i, k];
-                                intervals[i, k] = intervals[j, k];
-                                intervals[j, k] = temp;
-                            }
-                        }
-                    }
-                }
-                int f = 1;
-                for (int i = 0; i < intervals.GetLength(0);)
-                {
-                    if (intervals[i, 0] < intervals[f, 1])
-                    {
-                        i++;
-                    }
-                    else
-                        if (intervals[i, 0] > intervals[f, 1])
-                        f++;
-                    else
-                    {
-                        i++;
-                        f++;
-                    }
-                    n = Math.Max(n, i - f);
-                }
-                return n + 1;
+                beg[i] = intervals[i, 0];
+                end[i] = intervals[i, 1];
             }
-            catch
+            Array.Sort(beg);
+            Array.Sort(end);
+
+            int k = 0, j = 0;
+            while (k < intervals.Length)
             {
-                Console.WriteLine("Error in generating number of meeting rooms");
+                if (beg[k] < end[j])
+                    k++;
+                else if (beg[k] > end[j])
+                    j++;
+                else
+                {
+                    k++;
+                    j++;
+                }
+                nom = Math.Max(nom, k - j);
             }
-            return 0;
+            return nom;
         }
-        //----------------------------Method-7-SortedSquares()------------------------------------------
-        /* Given an array of integers sorted in non-decreasing order and return an array of the squares of each number 
-         * in sorted non-decreasing order. 
-         */
-        public static int[] SortedSquares(int[] A)
+        catch
+        {
+            Console.WriteLine("Error in generating number of meeting rooms");
+        }
+        return 0;
+    }
+    //----------------------------Method-7-SortedSquares()------------------------------------------
+    /* Given an array of integers sorted in non-decreasing order and return an array of the squares of each number 
+     * in sorted non-decreasing order. 
+     */
+    public static int[] SortedSquares(int[] A)
         {
             try
             {
