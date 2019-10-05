@@ -256,12 +256,19 @@ namespace Experimental1
         /* Given  two arrays and need to find the intersection of the two arrays.
          * Each element in the result should appear as many times as it shows in both arrays
          */
+        
+        /* Finished by Yusi Wei
+        */
+        //Self-reflection: Dictionary is a good way to solve this question because the time complexity is less than that of nest loop. 
         public static int[] Intersect(int[] nums1, int[] nums2)
         {
+            //Create a list to store the results
             List<int> intersec = new List<int>();
             try
             {
+                //Create a dictionary for num1
                 Dictionary<int, int> mydictionary1 = new Dictionary<int, int>();
+                //iterate through the array num1
                 foreach (int num in nums1)
                 {
                     if (!mydictionary1.ContainsKey(num))
@@ -273,6 +280,7 @@ namespace Experimental1
                         mydictionary1[num]++;
                     }
                 }
+                //Compare the elements in num1 and num2 and add the same elements into the list
                 foreach (int num in nums2)
                 {
                     if (mydictionary1.ContainsKey(num) && mydictionary1[num] > 0)
@@ -293,11 +301,18 @@ namespace Experimental1
         /* Given an array of integers A, return the largest integer that only occurs once.
          * If no integer occurs once, return -1.
          */
+        
+        /* Finished by Yusi Wei
+        */
+        //Self-reflection: A counter is needed to record how many times the number is repeated. And return the largest integer that count is 1.
+        //                 While using the while loop, I had to consider when i=0                 
         public static int LargestUniqueNumber(int[] A)
         {
             try
             {
+                //This variable is used to return the result
                 int t = 0;
+                //This variable is used to record how many times the number is repeated.
                 int count = 1;
                 Array.Sort(A);
                 int i = A.Length - 1;
@@ -308,6 +323,7 @@ namespace Experimental1
                         count++;
                         i--;
                     }
+                    //Restart the counter
                     else if (count > 1)
                     {
                         count = 1;
@@ -341,6 +357,10 @@ namespace Experimental1
          * of the desired character. The time taken to move your finger from index i to index j is |i - j|.
          * You have to type a string word. below function calculates how much time it takes to type it with one finger.
          */
+        
+        /* Finished by Yusi Wei
+        */
+        //Self-reflection: I do not know how to use dictionary to solve this problem, so I solved the problem mathematically.
         public static int CalculateTime(string keyboard, string word)
         {
             int r = 0;
@@ -393,6 +413,10 @@ namespace Experimental1
         /* Given a binary matrix A, we want to flip the image horizontally, then invert it, 
          * and return the resulting image
          */
+        
+        /*Finished by Yusi Wei
+        */
+        //Self-reflection: Fist step is to flip an image horizontally, and second step is to invert an image 
         public static int[,] FlipAndInvertImage(int[,] A)
         {
             int row = A.GetLength(0);
@@ -405,6 +429,7 @@ namespace Experimental1
                 {
                     for (int j = 0; j < col; j++)
                     {
+                       //Flip the array
                         b = A[i, j];
                         c = A[i, col - j - 1];
                         d = b;
@@ -412,6 +437,7 @@ namespace Experimental1
                         b = c;
                         c = d;
                         B[i, j] = b;
+                       //Invert the array
                         if (B[i, j] == 0)
                             B[i, j] = 1;
                         else if (B[i, j] == 1)
