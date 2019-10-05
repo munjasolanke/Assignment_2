@@ -70,14 +70,12 @@ namespace Experimental1
             {
                 if (a % 2 == 0)
                 {
-
                     Console.WriteLine("Please enter start time: ");
                 }
                 else
                 {
                     Console.WriteLine("Please enter end time: ");
                 }
-
                 input = Console.ReadLine();
                 timeInput.Add(input);
                 a++;
@@ -127,7 +125,7 @@ namespace Experimental1
             }
             Console.WriteLine("--------------------------------------------------");
         }
-        //----------------------Main Function Ends----------------------------------------------------
+//----------------------Main Function Ends----------------------------------------------------
         public static int input_array_length()
         {
             Console.WriteLine("Please enter the length of array");
@@ -249,6 +247,9 @@ namespace Experimental1
             return (0);
         }
         //-----------------------------------Method-2-Intersect()------------------------------
+        /* Given  two arrays and need to find the intersection of the two arrays.
+         * Each element in the result should appear as many times as it shows in both arrays
+         */
         public static int[] Intersect(int[] nums1, int[] nums2)
         {
             List<int> intersec = new List<int>();
@@ -283,6 +284,9 @@ namespace Experimental1
             return new int[] { };
         }
         //-----------------------------------Method-3-LargestUniqueNumber()------------------------------
+        /* Given an array of integers A, return the largest integer that only occurs once.
+         * If no integer occurs once, return -1.
+         */
         public static int LargestUniqueNumber(int[] A)
         {
             try
@@ -326,6 +330,11 @@ namespace Experimental1
             return new int { };
         }
         //----------------------Method-4-CalculateTime()--------------------------------------------------
+        /* Given a string keyboard of length 26 indicating the layout of the keyboard (indexed from 0 to 25), 
+         * initially your finger is at index 0. To type a character, you have to move your finger to the index 
+         * of the desired character. The time taken to move your finger from index i to index j is |i - j|.
+         * You have to type a string word. below function calculates how much time it takes to type it with one finger.
+         */
         public static int CalculateTime(string keyboard, string word)
         {
             int r = 0;
@@ -375,6 +384,9 @@ namespace Experimental1
             return 0;
         }
         //----------------------Method-5-FlipAndInvertImage()---------------------------------------------
+        /* Given a binary matrix A, we want to flip the image horizontally, then invert it, 
+         * and return the resulting image
+         */
         public static int[,] FlipAndInvertImage(int[,] A)
         {
             int row = A.GetLength(0);
@@ -409,7 +421,10 @@ namespace Experimental1
             return new int[,] { };
         }
         //----------------------Method-6-MinMeetingRooms()---------------------------------------------
-    public static int minMeetingRooms(int[,] intervals)
+        /* Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei),
+         * Below function finds the minimum number of conference rooms required.
+         */
+        public static int minMeetingRooms(int[,] intervals)
     {
 
         int[] beg = new int[intervals.Length];
