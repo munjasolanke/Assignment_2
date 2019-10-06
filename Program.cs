@@ -30,13 +30,13 @@ namespace Experimental1
             Console.WriteLine("--------------------------------------------------");
             //-----------------------------------Method-3-LargestUniqueNumber()------------------------------
             Console.WriteLine("Method-3-LargestUniqueNumber:");
-            int[] A = { -2,4,4,4,4,4,5,5,5,6,6,7,7,9,9,9 };
+            int[] A = { 5,7,3,9,4,9,8,3,1 };
             Console.WriteLine("Output:Largest integer occuring once = {0}\n", LargestUniqueNumber(A));
             Console.WriteLine("--------------------------------------------------");
             //----------------------Method-4-CalculateTime()--------------------------------------------------
             Console.WriteLine("Method-4-CalculateTime:");
             string keyboard = "abcdefghijklmnopqrstuvwxyz";
-            string word = "mds";
+            string word = "cba";
             Console.WriteLine("Time taken to type with one finger is = {0} units.\n", CalculateTime(keyboard, word));
             Console.Read();
             Console.WriteLine("--------------------------------------------------");
@@ -98,7 +98,7 @@ namespace Experimental1
             Console.WriteLine("--------------------------------------------------");
             //----------------------------Method-8-ValidPalindrome()------------------------------------------
             Console.WriteLine("Method-8-ValidPalindrome:");
-            string str = "xerox";
+            string str = "acivic";
             Console.WriteLine("THE input string to check for palindrome is \"{0}\" ", str);
             bool val = ValidPalindrome(str);
             Console.Write("\n");
