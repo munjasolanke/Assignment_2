@@ -31,18 +31,14 @@ namespace Experimental1
             //-----------------------------------Method-3-LargestUniqueNumber()------------------------------
             Console.WriteLine("Method-3-LargestUniqueNumber:");
             int[] A = { -2,4,4,4,4,4,5,5,5,6,6,7,7,9,9,9 };
-            //int[] arr2 = input_array();
             Console.WriteLine("Output:Largest integer occuring once = {0}\n", LargestUniqueNumber(A));
             Console.WriteLine("--------------------------------------------------");
-            //Console.WriteLine("Press any key to continue further code:\n");
-            //Console.Read();
             //----------------------Method-4-CalculateTime()--------------------------------------------------
             Console.WriteLine("Method-4-CalculateTime:");
             string keyboard = "abcdefghijklmnopqrstuvwxyz";
             string word = "mds";
             Console.WriteLine("Time taken to type with one finger is = {0} units.\n", CalculateTime(keyboard, word));
             Console.Read();
-            //Console.WriteLine("Press any key to continue further code:\n");
             Console.WriteLine("--------------------------------------------------");
             //----------------------Method-5-FlipAndInvertImage()---------------------------------------------
             Console.WriteLine("Method-5-FlipAndInvertImage:");
@@ -50,17 +46,10 @@ namespace Experimental1
             int[,] flipAndInvertedImage = FlipAndInvertImage(image);
             Console.WriteLine("The resulting flipped and inverted image is:\n");
             Display2DArray(flipAndInvertedImage);
-            //Console.WriteLine("Press any key to continue further code:\n");
-            //Console.Write("\n");
             Console.Read();
             Console.WriteLine("--------------------------------------------------");
             //----------------------Method-6-MinMeetingRooms()---------------------------------------------
             Console.WriteLine("Method-6-MinMeetingRooms:");
-            //int[,] intervals = { { 0, 30 }, { 5, 10 }, { 15, 20 } };
-            //int minMeetingRooms = MinMeetingRooms(intervals);
-            //Console.WriteLine("Minimum meeting rooms needed = {0}\n", minMeetingRooms);
-            //Console.Read();
-
             int a = 0;
             List<string> timeInput = new List<string>();
             Console.WriteLine("Please enter the number of meetings:");
@@ -96,8 +85,6 @@ namespace Experimental1
             //----------------------------Method-7-SortedSquares()------------------------------------------
             int[] arr = { -4, -1, 0, 3, 10 };
             Console.WriteLine("Method-7-SortedSquares");
-            //Console.Write("\n");
-            //int[] arr = input_array();
             for (int i = 0; i < arr.Length && (arr[i] > arr[i + 1]); i++)
             {
                 Console.WriteLine("Your input array is not in ascending order. Next time please enter in ascending order.");
@@ -212,11 +199,13 @@ namespace Experimental1
             }
         }
         //-----------------------------------Method-1-SearchInsert()------------------------------
-        /* Given an array of distinct sorted integers sorted in ascending order and target value is is aloso provided.
+        /* Given an array of distinct sorted integers sorted in ascending order and target value is is also provided.
          * Return the index of the target if it is found in the array. In case if not able to find the target, 
          * it will return the index where the target could be inserted so as the array still remains sorted.
          *
          *  Method completed by Munja Solanke 
+         *  
+         *  Self Reflection: Learned array manipulation and array sorting which gives the best time complexity. Developed the algorithm design methods.
          */
         public static int SearchInsert(int[] arr1, int key)
         {
@@ -503,7 +492,10 @@ namespace Experimental1
          * in sorted non-decreasing order. 
          * 
          *  Method completed by Munja Solanke 
+         *  
+         *  Self Reflection: Learned to sort the array input and understood how to take the input from the console and use it in the program
          */
+         
         public static int[] SortedSquares(int[] A)
         {
             try
@@ -533,6 +525,9 @@ namespace Experimental1
          * you can delete maximum one character 
          *
          *  Method completed by Munja Solanke
+         *  
+         *  Self Reflection: Learned the logic for Palindrome function and how to pass the string from one function to another. 
+         *  Learned to use minimum Loops to maintain the time complexity and space complexity. 
          */
 
         //This function checks whether the given input is palindrome or not.
